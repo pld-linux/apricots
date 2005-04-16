@@ -9,10 +9,10 @@ Source0:	http://www.fishies.org.uk/%{name}-%{version}.tar.gz
 # Source0-md5:	910828d717e46d8cbd9c24f702d09fbc
 Patch0:		%{name}-destdir.patch
 URL:		http://www.fishies.org.uk/apricots.html
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	OpenAL-devel
 BuildRequires:	SDL-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,7 +28,7 @@ i zrzucaniu bomb.
 %patch0 -p1
 
 %build
-cp %{_datadir}/automake/config.sub admin
+cp /usr/share/automake/config.sub admin
 %{__aclocal}
 %{__autoconf}
 %{__automake}
@@ -38,7 +38,8 @@ cp %{_datadir}/automake/config.sub admin
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
