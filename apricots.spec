@@ -2,17 +2,18 @@ Summary:	Game where you fly a little plane around the screen and shoot things an
 Summary(pl):	Gra, polegaj±ca na lataniu samolotem, strzelaniu do ró¿nych rzeczy i zrzucaniu bomb
 Name:		apricots
 Version:	0.2.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://www.fishies.org.uk/%{name}-%{version}.tar.gz
 # Source0-md5:	910828d717e46d8cbd9c24f702d09fbc
 Patch0:		%{name}-destdir.patch
+Patch1:		%{name}-alut.patch
 URL:		http://www.fishies.org.uk/apricots.html
-BuildRequires:	OpenAL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	freealut-devel
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,6 +28,7 @@ i zrzucaniu bomb.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -34,7 +36,8 @@ cp /usr/share/automake/config.sub admin
 %{__autoconf}
 %{__automake}
 %configure
-%{__make}
+%{__make} \
+	LDFLAGS="-lalut"
 
 %install
 rm -rf $RPM_BUILD_ROOT
