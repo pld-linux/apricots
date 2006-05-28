@@ -1,0 +1,23 @@
+diff -ruN apricots-0.2.6./apricots/sampleio.cpp apricots-0.2.6/apricots/sampleio.cpp
+--- apricots-0.2.6./apricots/sampleio.cpp	2003-08-06 01:21:22.000000000 +0200
++++ apricots-0.2.6/apricots/sampleio.cpp	2006-05-28 20:44:53.445515024 +0200
+@@ -80,17 +80,12 @@
+   for (int i = 0; i < numsamples; i++){
+     ALsizei freq;
+     ALboolean fileok;
+-    // Evil OpenAL portability fix done here
+-#ifdef _WIN32
++
+     ALenum format;
+     ALboolean trash;
+     alutLoadWAVFile(filenames[i],&format,&data,&filelen,&freq,&trash);
+     fileok = (alGetError() == AL_NO_ERROR);
+-#else
+-    ALsizei format;
+-    ALsizei trash;
+-    fileok = alutLoadWAV(filenames[i],&data,&format,&filelen,&trash,&freq);
+-#endif
++
+     if (!fileok){
+       cerr << "sampleio: could not open " << filenames[i] << endl;
+       exit(1);
