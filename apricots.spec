@@ -1,5 +1,5 @@
 Summary:	Game where you fly a little plane around the screen and shoot things and drop bombs
-Summary(pl.UTF-8):   Gra, polegająca na lataniu samolotem, strzelaniu do różnych rzeczy i zrzucaniu bomb
+Summary(pl.UTF-8):	Gra, polegająca na lataniu samolotem, strzelaniu do różnych rzeczy i zrzucaniu bomb
 Name:		apricots
 Version:	0.2.6
 Release:	2
